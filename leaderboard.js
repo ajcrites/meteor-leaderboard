@@ -9,7 +9,7 @@ Sorter = {
         name: {name: 1, score: -1}
     },
     order: 'score'
-}
+};
 
 if (Meteor.isClient) {
     Session.set("sorter", Sorter);
@@ -27,13 +27,30 @@ if (Meteor.isClient) {
     return Session.equals("selected_player", this._id) ? "selected" : '';
   };
 
-  Template.leaderboard.sort_item = function () {
-
+  Template.leaderboard.sort_text = function () {
+      var text;
+      if (Session.get("sorter").order == "score") {
+          text = "name";
+      }
+      else {
+          text = "score";
+      }
+    return "Sort by " + text;
   }
 
   Template.leaderboard.events({
     'click input.inc': function () {
       Players.update(Session.get("selected_player"), {$inc: {score: 5}});
+    },
+    'click input.sort': function () {
+        var sorter = Session.get("sorter");
+        if (sorter.order == "score") {
+            sorter.order = "name";
+        }
+        else {
+            sorter.order = "score";
+        }
+        Session.set("sorter", sorter);
     }
   });
 
