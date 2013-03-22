@@ -60,3 +60,6 @@ body {
 .inc {
   cursor: pointer;
 }
+.sort-button {
+   text-align: center;
+}
