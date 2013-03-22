@@ -63,3 +63,6 @@ body {
 .sort-button {
    text-align: center;
 }
+.name, .score {
+   vertical-align: middle;
+}

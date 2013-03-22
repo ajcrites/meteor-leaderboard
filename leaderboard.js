@@ -67,6 +67,9 @@ if (Meteor.isClient) {
     },
     'click input.reset': function () {
         Meteor.call('reset');
+    },
+    'click input.delete': function () {
+        Players.remove(this._id);
     }
   });
 
